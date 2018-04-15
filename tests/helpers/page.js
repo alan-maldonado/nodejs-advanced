@@ -61,6 +61,12 @@ class Page {
         }).then(res => res.json());
       }, path, data);
   }
+
+  execRequests (actions) {
+    return Promise.all(
+      actions.map(({ method, path, data}) => this[method](path, data))
+    );
+  }
 }
 
 module.exports = Page;
